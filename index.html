@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leitor de Velocidade RSVP</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.88/dist/epub.min.js"></script>
+  </head>
+  <body class="theme-light">
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <h1>Leitor de Velocidade RSVP</h1>
+          <p>
+            Leia palavra por palavra mantendo o foco no ponto central. Carregue PDFs, EPUBs,
+            MOBIs ou cole texto puro.
+          </p>
+        </div>
+        <button id="themeToggle" class="button button--ghost" type="button">
+          Alternar tema
+        </button>
+      </header>
+
+      <section class="input-panel">
+        <div class="input-panel__controls">
+          <label class="file-input">
+            <span>Importar arquivo</span>
+            <input id="fileInput" type="file" accept=".txt,.pdf,.epub,.mobi" />
+          </label>
+          <button id="loadText" class="button" type="button">Carregar texto</button>
+          <span class="hint">
+            PDFs e EPUBs são processados no navegador. MOBI é experimental e pode exigir
+            conversão.
+          </span>
+        </div>
+        <textarea
+          id="textInput"
+          placeholder="Cole ou digite seu texto aqui..."
+          rows="6"
+        ></textarea>
+      </section>
+
+      <section class="reader">
+        <div class="reader__display" id="readerDisplay" style="--max-left: 0">
+          <span class="reader__left" id="wordLeft"></span>
+          <span class="reader__orp" id="wordOrp"></span>
+          <span class="reader__right" id="wordRight"></span>
+        </div>
+        <div class="reader__meta" id="readerMeta">0 palavras carregadas</div>
+      </section>
+
+      <section class="controls">
+        <div class="controls__row">
+          <button id="playPause" class="button" type="button">Play</button>
+          <button id="rewind" class="button button--ghost" type="button">Voltar 10</button>
+          <button id="forward" class="button button--ghost" type="button">Avançar 10</button>
+        </div>
+        <div class="controls__row">
+          <label class="range">
+            <span>Velocidade (WPM): <strong id="wpmValue">300</strong></span>
+            <input id="wpm" type="range" min="200" max="1200" value="300" step="10" />
+          </label>
+          <label class="range">
+            <span>Tamanho da fonte: <strong id="fontValue">52</strong>px</span>
+            <input id="fontSize" type="range" min="28" max="96" value="52" step="2" />
+          </label>
+        </div>
+        <div class="controls__row">
+          <label class="range">
+            <span>Progresso</span>
+            <input id="progress" type="range" min="0" max="0" value="0" />
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
